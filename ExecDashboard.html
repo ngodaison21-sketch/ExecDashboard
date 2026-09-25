@@ -668,7 +668,7 @@
     function loadSavedData(){return normalizeData(BASE_DATA)}
     function defaultCover(snapshot='26/08/2026'){return {eyebrow:'Executive Progress Report',audience:'Dành riêng Chủ tịch đẹp trai',title:'Dashboard điều hành\ntiến độ công việc',highlight:'điều hành',subtitle:'Báo cáo thông minh dành riêng Chủ tịch đẹp trai: số nào chậm, task nào trễ, tụi em chỉ ra ngay để anh khỏi mất công soi.',period_label:'Snapshot',snapshot,owner:'Yi Zheng',mode:'Offline · Bấm để drill-down',caption_title:'Executive dashboard · phiên bản sáng',caption_subtitle:'Back Office · Front Office · 02 dự án · Nhân sự · Đào tạo'} }
     function normalizeData(v){const x=cloneData(v);x.cover={...defaultCover(x.snapshotDate||'09/08/2026'),...(x.cover||{})};return x}
-    function validData(v){return v&&Array.isArray(v.tasks)&&Array.isArray(v.projects)&&Array.isArray(v.trainingModules)&&Array.isArray(v.projectStages)&&Array.isArray(v.projectActions)&&Array.isArray(v.projectDecisions)&&Array.isArray(v.projectTasks)&&Array.isArray(v.hr?.units)&&Array.isArray(v.front?.kpis)&&Array.isArray(v.front?.tasks)}
+    function validData(v){return v&&Array.isArray(v.tasks)&&Array.isArray(v.projects)&&Array.isArray(v.projectStages)&&Array.isArray(v.projectActions)&&Array.isArray(v.projectDecisions)&&Array.isArray(v.projectTasks)&&Array.isArray(v.front?.kpis)&&Array.isArray(v.front?.tasks)}
     function stamp(){return new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short'}).format(new Date())}
     function saveData(){/* bản chỉ đọc: dữ liệu luôn đến từ Apps Script */}
     function checkpointHistory(){}
