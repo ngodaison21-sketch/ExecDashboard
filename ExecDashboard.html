@@ -1479,7 +1479,7 @@
       try{
         const payload=await fetchReport();
         if(!validData(payload))throw new Error('Máy chủ trả về dữ liệu thiếu trường bắt buộc.');
-        DATA=normalizeData(payload);if(payload&&payload.mailControl)renderMailControl(payload.mailControl);
+        DATA=normalizeData(payload);if(payload&&payload.build)MAIL_BUILD=payload.build;if(payload&&payload.mailControl)renderMailControl(payload.mailControl);
         const policySync=await syncPolicyTab(DATA);
         DATA=policySync.data;
         const xfSync=await xfPromise;
@@ -1677,6 +1677,10 @@
     
     /* ---- Bảng điều khiển gửi mail ------------------------------------- */
     var MAIL_STATE=null;
+    /* Dấu phiên bản của Code.gs đang chạy sau link Web App. Đây là cách duy
+       nhất trả lời chắc chắn câu "mình Deploy rồi mà sao không ăn?" — bản cũ
+       không gửi trường này, nên trống nghĩa là link chưa cập nhật. */
+    var MAIL_BUILD='';
     /* Dùng lại đúng cách gọi JSONP của fetchReport: Apps Script không trả
        header CORS nên fetch() thường sẽ hỏng khi trang không cùng domain. */
     function callMailApi(params){
@@ -1693,6 +1697,7 @@
              nhìn `ok` thì dashboard sẽ báo "Máy chủ từ chối lệnh" — nghe như
              sai PIN, trong khi nguyên nhân thật là CHƯA DEPLOY BẢN MỚI.
              Nhận ra hình dạng báo cáo rồi nói thẳng ra. */
+          if(p&&p.build)MAIL_BUILD=p.build;
           if(p&&p.ok===undefined&&(Array.isArray(p.tasks)||p.generatedAt)){
             return reject(new Error(
               'Link Apps Script đang chạy BẢN CŨ, chưa có phần điều khiển gửi mail. '+
@@ -1731,10 +1736,24 @@
       const rs=document.getElementById('mailReason');
       if(rs)rs.value=mc.reason||'';
       const st=document.getElementById('mailFormStatus');
-      if(st)st.textContent=mc.sheetFound===false
-        ?'Chưa có tab "Cấu hình email" trong sheet Back Office — chạy setupMailControl() một lần.'
-        :('Cập nhật lần cuối: '+(mc.updatedAt||'chưa có')+
-          (mc.excludeCount?(' · đang loại trừ '+mc.excludeCount+' địa chỉ'):''));
+      if(st){
+        const bits=[];
+        if(mc.sheetFound===false){
+          bits.push('Chưa có tab "Cấu hình email" trong sheet Masterplan Front — '+
+            'chạy setupMailControl() một lần trong Apps Script.');
+        }else{
+          bits.push('Cập nhật lần cuối: '+(mc.updatedAt||'chưa có')+
+            (mc.excludeCount?(' · đang loại trừ '+mc.excludeCount+' địa chỉ'):''));
+        }
+        /* Hai tab cùng tên ở hai file là cái bẫy im lặng: sửa nhầm tab không
+           được đọc thì tưởng đã tắt mail mà thực ra vẫn gửi. */
+        if(mc.stray&&mc.stray.length){
+          bits.push('⚠ Còn tab "Cấu hình email" cũ trong '+mc.stray.join(', ')+
+            '. Dashboard KHÔNG đọc tab đó — nên xoá để khỏi sửa nhầm.');
+        }
+        if(MAIL_BUILD)bits.push('Bản script đang chạy: '+MAIL_BUILD);
+        st.textContent=bits.join(' · ');
+      }
     }
     async function openMailModal(){
       /* CSS của trang hiện hộp thoại bằng .modal-overlay.open{display:grid};
