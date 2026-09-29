@@ -1569,7 +1569,17 @@
       const ws=$('#projectWorkspace'); if(!ws) return;
       const name=tabName||state.tab;
       const pid=PROJECT_TAB_IDS[name];
-      if(pid===undefined) return;          // không phải tab dự án -> để nguyên
+      if(pid===undefined){
+        /* Không phải tab dự án. Nếu khoang đang nằm trong một tab dự án thì
+           để yên. Nhưng nếu nó còn lơ lửng ngoài mọi .sheet (đúng tình trạng
+           lúc trang vừa nạp) thì phải cất vào tab dự án đầu tiên, nếu không
+           nó hiện đè lên MỌI tab. */
+        if(!ws.closest('.project-mount')){
+          const park=document.querySelector('.sheet .project-mount');
+          if(park) park.appendChild(ws);
+        }
+        return;
+      }
       const mount=$('#sheet-'+name+' .project-mount');
       if(!mount) return;
       if(ws.parentNode!==mount) mount.appendChild(ws);
