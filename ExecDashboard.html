@@ -220,9 +220,9 @@
       <button class="tab" role="tab" id="tab-overview" aria-controls="sheet-overview" aria-selected="true" data-tab="overview">0) Tổng quan<small>Xếp hạng · xu hướng · cảnh báo</small></button>
       <button class="tab" role="tab" id="tab-backoffice" aria-controls="sheet-backoffice" aria-selected="false" data-tab="backoffice">1) Back Office<small>Progress · vướng mắc · next step</small></button>
       <button class="tab" role="tab" id="tab-front" aria-controls="sheet-front" aria-selected="false" data-tab="front">2) Front Office<small>KPI · phễu · lũy kế · task</small></button>
-      <button class="tab" role="tab" id="tab-creditscore" aria-controls="sheet-creditscore" aria-selected="false" data-tab="creditscore">3) Đề án Credit Score<small>Stage · phê duyệt · hồ sơ</small></button><button class="tab" role="tab" id="tab-mis" aria-controls="sheet-mis" aria-selected="false" data-tab="mis">4) Dự án MIS<small>WBS · biểu mẫu · nghiệm thu</small></button><button class="tab" role="tab" id="tab-data360" aria-controls="sheet-data360" aria-selected="false" data-tab="data360">5) VNFITE Data 360<small>Sandbox NĐ 169 · hồ sơ · 13 Khối/Ban</small></button>
-      <button class="tab" role="tab" id="tab-xfinance" aria-controls="sheet-xfinance" aria-selected="false" data-tab="xfinance">6) XFinance<small>Kế hoạch tổng thể · checklist</small></button>
-      <button class="tab" role="tab" id="tab-fecredit" aria-controls="sheet-fecredit" aria-selected="false" data-tab="fecredit">7) Theo dõi hồ sơ FE Credit<small>Hệ thống · TTKD · tuần · nguồn hồ sơ</small></button>
+      <button class="tab" role="tab" id="tab-creditscore" aria-controls="sheet-creditscore" aria-selected="false" data-tab="creditscore">3) Đề án Credit Score<small>Stage · phê duyệt · hồ sơ</small></button><button class="tab" role="tab" id="tab-mis" aria-controls="sheet-mis" aria-selected="false" data-tab="mis">4) Dự án MIS<small>WBS · biểu mẫu · nghiệm thu</small></button><button class="tab" role="tab" id="tab-data360" aria-controls="sheet-data360" aria-selected="false" data-tab="data360">5) VNFITE Data 360<small>Sandbox NĐ 169 · hồ sơ · 13 Khối/Ban</small></button><button class="tab" role="tab" id="tab-openapi" aria-controls="sheet-openapi" aria-selected="false" data-tab="openapi">6) Đề án Open API<small>Sandbox NĐ 94/2025 · hồ sơ · 13 Khối/Ban</small></button>
+      <button class="tab" role="tab" id="tab-xfinance" aria-controls="sheet-xfinance" aria-selected="false" data-tab="xfinance">7) XFinance<small>Kế hoạch tổng thể · checklist</small></button>
+      <button class="tab" role="tab" id="tab-fecredit" aria-controls="sheet-fecredit" aria-selected="false" data-tab="fecredit">8) Theo dõi hồ sơ FE Credit<small>Hệ thống · TTKD · tuần · nguồn hồ sơ</small></button>
       
       
     </nav>
@@ -309,6 +309,8 @@
       <section class="sheet" id="sheet-mis" role="tabpanel" aria-labelledby="tab-mis" hidden><div class="sheet-head"><div><h2>Dự án MIS</h2><p>WBS · biểu mẫu · nghiệm thu</p></div></div><div class="project-mount" data-project-id="mis"></div></section>
 
       <section class="sheet" id="sheet-data360" role="tabpanel" aria-labelledby="tab-data360" hidden><div class="sheet-head"><div><h2>VNFITE Data 360</h2><p>Sandbox NĐ 169 · hồ sơ · 13 Khối/Ban</p></div></div><div class="project-mount" data-project-id="data360"></div><article class="panel xf-table" id="data360ChecklistPanel" style="margin-top:14px"><div class="panel-title"><div><h3>Checklist hồ sơ · VNFITE Data 360</h3><p id="data360ChecklistResult">Đang tải…</p></div><span class="hint">Đọc từ sheet “Danh mục tài liệu”</span></div><div class="xf-filters"><input class="field search" id="data360CheckSearch" type="search" placeholder="Tìm tài liệu, căn cứ pháp lý, người phụ trách…" aria-label="Tìm trong checklist hồ sơ"><select class="field" id="data360CheckSection" aria-label="Lọc theo phần hồ sơ"></select><select class="field" id="data360CheckStatus" aria-label="Lọc trạng thái"></select><button class="ghost" id="data360CheckReset">Xóa bộ lọc</button></div><div class="project-filter-kpis" id="data360CheckKpis"></div><div class="table-wrap"><table><thead><tr><th>Phần hồ sơ</th><th>Tài liệu / Hồ sơ</th><th>Bản hiện có</th><th>SL · Hình thức</th><th>Căn cứ pháp lý</th><th>Người phụ trách</th><th>Hạn hoàn thành</th><th>Trạng thái</th></tr></thead><tbody id="data360CheckRows"></tbody></table></div></article></section>
+
+      <section class="sheet" id="sheet-openapi" role="tabpanel" aria-labelledby="tab-openapi" hidden><div class="sheet-head"><div><h2>Đề án Open API</h2><p>Sandbox NĐ 94/2025 · hồ sơ · 13 Khối/Ban</p></div></div><div class="project-mount" data-project-id="openapi"></div><article class="panel xf-table" id="openapiChecklistPanel" style="margin-top:14px"><div class="panel-title"><div><h3>Checklist hồ sơ · Đề án Open API</h3><p id="openapiChecklistResult">Đang tải…</p></div><span class="hint">Đọc từ sheet “Danh mục tài liệu”</span></div><div class="xf-filters"><input class="field search" id="openapiCheckSearch" type="search" placeholder="Tìm tài liệu, căn cứ pháp lý, người phụ trách…" aria-label="Tìm trong checklist hồ sơ"><select class="field" id="openapiCheckSection" aria-label="Lọc theo phần hồ sơ"></select><select class="field" id="openapiCheckStatus" aria-label="Lọc trạng thái"></select><button class="ghost" id="openapiCheckReset">Xóa bộ lọc</button></div><div class="project-filter-kpis" id="openapiCheckKpis"></div><div class="table-wrap"><table><thead><tr><th>Phần hồ sơ</th><th>Tài liệu / Hồ sơ</th><th>Bản hiện có</th><th>SL · Hình thức</th><th>Căn cứ pháp lý</th><th>Người phụ trách</th><th>Hạn hoàn thành</th><th>Trạng thái</th></tr></thead><tbody id="openapiCheckRows"></tbody></table></div></article></section>
 
       <div id="projectWorkspace" class="project-workspace">
         <aside class="guide-strip guide-context guide-projects onboarding-guide" aria-label="Hướng dẫn lọc task dự án">
@@ -1601,7 +1603,7 @@
        lọc phải đồng bộ tay, và 150KB markup nhân ba. Ở đây tab nào đang mở
        thì khoang được chuyển sang tab đó, rồi renderProjects() chạy như cũ.
        ==================================================================== */
-    const PROJECT_TAB_IDS = {"creditscore": "credit-score", "mis": "mis", "data360": "data360"};
+    const PROJECT_TAB_IDS = {"creditscore": "credit-score", "mis": "mis", "data360": "data360", "openapi": "openapi"};
 
     function projectIndexOf(projectId){
       const list=DATA.projects||[];
@@ -1868,7 +1870,7 @@
     /* Mở thẳng tab Tổng quan: người mở dashboard cần biết toàn cảnh trước,
        rồi mới đi vào từng khối. Deep-link #front, #hr… vẫn hoạt động. */
     const initial=location.hash.replace('#','');
-    const TABS=['overview','backoffice','front','creditscore','mis','data360','xfinance','fecredit'];
+    const TABS=['overview','backoffice','front','creditscore','mis','data360','openapi','xfinance','fecredit'];
     switchTab(TABS.includes(initial)?initial:'overview',false);
     syncControls();
     const DUE_OVERDUE="Đã qua hạn";
